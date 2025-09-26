@@ -1,0 +1,12 @@
+(comment) @comment
+(expression) @string
+(expression_begin) @attribute
+(expression_end) @attribute
+(identifier) @variable
+(keyword) @keyword
+(object) @string
+(operator) @operator
+(statement) @variable.builtin
+(statement_begin) @attribute
+(statement_end) @attribute
+(string) @string
