@@ -1,0 +1,103 @@
+# See: https://starship.rs/config/
+# Enable with: eval "$(starship init bash)"
+
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Format of the prompt
+format = """
+[╭─](bold green)$username$hostname$kubernetes$directory$git_branch$git_state$git_status$aws$python$time$cmd_duration$shlvl$jobs$status
+(bold green)$character
+"""
+
+[aws]
+format = '[($symbol$profile(\[$duration\]) )](bright-cyan)'
+symbol = '☁️ '
+
+# The character at the end of the prompt.
+[character]
+error_symbol = "[\\$](bold red)"
+success_symbol = "[\\$](bold green)"
+vicmd_symbol = "[✎](bold green)"
+
+[cmd_duration]
+format = '⏱ [$duration ]($style)'
+
+[directory]
+format = ' [$path]($style)[$read_only]($read_only_style) '
+repo_root_format = ' [$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+repo_root_style = 'red'
+style = 'bright-blue'
+truncation_length = 16  # A large number since I don't want truncation, but setting to 0 stops the repo_root_style from working.
+truncate_to_repo = false
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+ignore_bare_repo = true
+symbol = ''
+
+[git_state]
+cherry_pick = "[🍒 PICKING]($style)"
+
+[git_status]
+ahead = '⇡$count'
+behind = '⇣$count'
+conflicted = '=$count'
+deleted = '✘$count'
+diverged = '⇕⇡$ahead_count⇣$behind_count'
+modified = '!$count'
+renamed = '»$count'
+staged = '+$count'
+stashed = '\$$count'
+untracked = '?$count'
+
+[hostname]
+format = "[@$hostname](bright-blue)"
+
+[jobs]
+number_threshold = 1
+
+[kubernetes]
+disabled = false
+format = '[ $symbol$context(:$namespace)]($style)'
+style = 'bright-cyan'
+symbol = '☸'
+
+[[kubernetes.contexts]]
+context_pattern = '(?P<cluster>prod\d+(-admin)?).*'
+context_alias = '$1'
+style = 'bright-yellow'
+
+[[kubernetes.contexts]]
+context_pattern = '(?P<cluster>test\d+(-admin)?).*'
+context_alias = '$cluster'
+style = 'bright-purple'
+
+[[kubernetes.contexts]]
+context_pattern = 'arn:aws:eks:.*:cluster/(?P<cluster>.*)'
+context_alias = '$cluster'
+style = 'bright-yellow'
+
+[python]
+format = '[(\()($symbol$virtualenv )]($style)'
+symbol = '🐍'
+
+[shlvl]
+disabled = false
+
+[status]
+disabled = false
+format = '[\[$symbol EXIT_CODE\($status\) $common_meaning(SIG$signal_name\($signal_number\))\]]($style) '
+map_symbol = true
+pipestatus = true
+pipestatus_separator = '[| ]($style)'
+
+[time]
+disabled = false
+format = "[🕙$time ]($style)"
+time_format = "%T"
+
+[username]
+format = "[$user]($style)"
+style_user = "bright-blue"
+show_always = true
