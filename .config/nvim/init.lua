@@ -1,0 +1,8 @@
+require('globals')
+require('options')
+require('functions')
+require('keymap')
+require('autocommands')
+require('filetypes')
+require('lazy-nvim')
+require('settings')
