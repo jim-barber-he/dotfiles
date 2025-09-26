@@ -1,0 +1,24 @@
+---
+extends: default
+
+rules:
+
+  # Don't require the leading `---` on YAML files.
+  #
+  document-start: disable
+
+  # Accept both of these forms
+  #    key:
+  #      - item
+  #
+  #    key:
+  #    - item
+  #
+  indentation:
+    indent-sequences: whatever
+
+  line-length:
+    max: 132
+    level: warning
+
+# vi:filetype=yaml

@@ -1,0 +1,90 @@
+[project]
+# Support Python 3.13+.
+requires-python = ">=3.13"
+
+[tool.ruff]
+cache-dir = "~/.cache/ruff"
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".direnv",
+    ".git",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+line-length = 120
+# Group violations by containing file.
+output-format = "grouped"
+show-fixes = true
+
+[tool.ruff.format]
+docstring-code-format = true
+# skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+ignore = [
+    "ANN001",  # Missing type annotation for function argument.
+    "ANN003",  # Missing type annotation.
+    "ANN201",  # Missing return type annotation for public function.
+    "COM812",  # Missing trailing comma. (messes with `ruff format`)
+    "D200",    # One-line docstring should fit on one line.
+    "D203",    # One blank line before class. Clashes with the newer D211 rule.
+    "D212",    # Multi-line docstring summary should start at the first line. Prefer D213 instead.
+    "ISC001",  # Single line implicit string concatenation. (messes with `ruff format`)
+    "T201",    # `print` found.
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-annotations]
+# Suppress ANN401 for dynamically typed *args and **kwargs arguments.
+# allow-star-arg-any = true
+
+# Suppress ANN* rules for any declaration that hasn't been typed at all.
+# This makes it easier to gradually add types to a codebase.
+# ignore-fully-untyped = true
+
+# Suppress ANN000-level violations for arguments matching the "dummy" variable regex (like _).
+# suppress-dummy-args = true
+
+# Suppress ANN200-level violations for functions that contain no return statement or explicit return statement(s) all return None.
+# suppress-none-returning = true
+
+[tool.ruff.lint.flake8-comprehensions]
+# Allow dict calls that make use of keyword arguments (e.g., dict(a=1, b=2)).
+# allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.flake8-quotes]
+# Quote style to prefer for inline strings.
+# inline-quotes = "single"
+
+# Quote style to prefer for multiline strings.
+# multiline-quotes = "single"
+
+[tool.ruff.lint.flake8-type-checking]
+# Enforce TC001, TC002, and TC003 rules even when valid runtime imports are present for the same module.
+# strict = true
+
+[tool.ruff.lint.pydocstyle]
+# Could see if any of these reduce the number of D* rules I need to ignore.
+# Note that specifying no convention enables all the docstyle rules.
+convention = "google"
+# convention = "numpy"
+# convention = "pep257"
+
+[tool.ruff.lint.pylint]
+# Constant types to ignore when used as "magic values" (see: PLR2004). Default ["bytes", "str"]
+# allow-magic-value-types = ["bytes", "int", "str"]
+
+# Maximum number of arguments allowed for a function or method definition. Default 5
+# max-args = 5
+
+# Maximum number of branches allowed for a function or method body. Default 12
+# max-branches = 12
+
+# max-returns = 6
+# max-statements = 50
